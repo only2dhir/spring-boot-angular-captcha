@@ -1,5 +1,6 @@
 package com.devglan.userportal;
 
+import com.devglan.userportal.service.CaptchaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    private CaptchaService captchaService;
 
     @Override
     public User create(User user) {
@@ -43,9 +47,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
         LoginResponse loginResponse = new LoginResponse();
-        loginResponse.setMessage("success");
-        loginResponse.setStatus(200);
-        loginResponse.setUsername("only2dhir");
+        boolean captchaVerified = captchaService.verify(loginRequest.getRecaptchaResponse());
+        if(!captchaVerified) {
+            loginResponse.setMessage("Invalid captcha");
+            loginResponse.setStatus(400);
+        }
+        if(captchaVerified && loginRequest.getEmail().equals("dhiraj@devglan.com") && loginRequest.getPassword().equals("password")) {
+            loginResponse.setMessage("Success");
+            loginResponse.setStatus(200);
+            loginResponse.setUsername("dhiraj");
+            loginResponse.setToken("token");
+        }else {
+            loginResponse.setMessage("Invalid credentials.");
+            loginResponse.setStatus(400);
+        }
         return loginResponse;
     }
 }
