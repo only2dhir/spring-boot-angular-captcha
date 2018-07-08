@@ -13,4 +13,6 @@ public interface UserService {
     User findById(int id);
 
     User update(User user);
+
+    LoginResponse login(LoginRequest loginRequest);
 }

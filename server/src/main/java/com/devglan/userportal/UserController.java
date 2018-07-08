@@ -13,6 +13,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @PostMapping("/login")
+    public LoginResponse login(@RequestBody LoginRequest loginRequest){
+        return userService.login(loginRequest);
+    }
+
     @PostMapping
     public User create(@RequestBody User user){
         return userService.create(user);

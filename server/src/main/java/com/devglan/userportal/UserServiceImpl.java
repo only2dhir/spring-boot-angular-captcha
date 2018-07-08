@@ -39,4 +39,13 @@ public class UserServiceImpl implements UserService {
     public User update(User user) {
         return null;
     }
+
+    @Override
+    public LoginResponse login(LoginRequest loginRequest) {
+        LoginResponse loginResponse = new LoginResponse();
+        loginResponse.setMessage("success");
+        loginResponse.setStatus(200);
+        loginResponse.setUsername("only2dhir");
+        return loginResponse;
+    }
 }

@@ -1,3 +1,4 @@
+
 <div class="row">
 
   <div class="col-md-6 col-md-offset-2">
@@ -17,9 +18,13 @@
           <div *ngIf="loginForm.controls.password.errors.required">Password is required</div>
         </div>
       </div>
+      <div class="form-group">
+        <div class="g-recaptcha" data-sitekey="6Lff7WIUAAAAAG2UuSYktpVi2Mz7tB6cgXnO1Tez"></div>
+          <div *ngIf="captchaError" class="error">Recaptcha not verified.</div>
+      </div>
       <button class="btn btn-default">Login</button>
       <div *ngIf="invalidLogin" class="error">
-        <div>Invalid credentials.</div>
+        <div>{{loginResponse}}</div>
       </div>
     </form>
   </div>

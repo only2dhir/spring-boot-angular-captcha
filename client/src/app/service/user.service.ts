@@ -1,11 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {User} from "../model/user.model";
+import {LoginResponse} from "../model/login.response.model";
+import {LoginRequest} from "../model/login.request.model";
+import {Observable} from "rxjs/index";
 
 @Injectable()
 export class UserService {
   constructor(private http: HttpClient) { }
   baseUrl: string = 'http://localhost:8080/users';
+
+  login(loginRequest: LoginRequest): Observable<LoginResponse> {
+    return this.http.post<any>(this.baseUrl + '/login', loginRequest);
+  }
 
   getUsers() {
     /* let fakeUsers = [{id: 1, firstName: 'Dhiraj', lastName: 'Ray', email: 'dhiraj@gmail.com'},
