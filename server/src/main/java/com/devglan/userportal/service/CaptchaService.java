@@ -4,17 +4,11 @@ import com.devglan.userportal.RecaptchaResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @PropertySource("classpath:application.properties")
 @Service
@@ -26,8 +20,6 @@ public class CaptchaService {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-    @Value("${google.recaptcha.site.key}")
-    public String recatchaKey;
     @Value("${google.recaptcha.secret.key}")
     public String recaptchaSecret;
     @Value("${google.recaptcha.verify.url}")

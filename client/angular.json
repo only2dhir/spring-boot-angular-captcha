@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular6-example",
+            "outputPath": "dist/client",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -118,5 +118,5 @@
       }
     }
   },
-  "defaultProject": "angular6-example"
+  "defaultProject": "client"
 }
